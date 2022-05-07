@@ -10,7 +10,7 @@ like this:
 
 And don't forget there's a namespace, you need use this
 ```cpp
-esc::writeFileWF
+esc::writeFileWF(xxx);
 ```
 or this
 ```cpp
@@ -18,6 +18,6 @@ using namespace esc;
 ```
 in any function:
 ```cpp
-writeFileWF
+writeFileWF(xxx);
 ```
 to use it.
