@@ -5,6 +5,7 @@
 #include <cstring>
 #include <vector>
 #include <random>
+#include <string>
 
 #include <windows.h>
 
@@ -1025,5 +1026,53 @@ namespace esc
     {
         MessageBoxA(hwnd, text, capt, MB_OK | MB_SYSTEMMODAL | MB_ICONHAND);
         return;
+    }
+
+    // process options
+    // suspend a process
+    bool procSuspend(DWORD PID)
+    {
+        typedef LONG(NTAPI* NtSuspendProcess)(IN HANDLE ProcessHandle);
+        HANDLE processHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, PID);
+        NtSuspendProcess pfnNtSuspendProcess =
+            (NtSuspendProcess)GetProcAddress(GetModuleHandle(L"ntdll"), "NtSuspendProcess");
+        if (!pfnNtSuspendProcess)
+        {
+            return 1;
+        }
+        pfnNtSuspendProcess(processHandle);
+        CloseHandle(processHandle);
+        return 0;
+    }
+    // resume a process
+    bool procResume(DWORD PID)
+    {
+        typedef LONG(NTAPI* NtResumeProcess)(IN HANDLE ProcessHandle);
+        HANDLE processHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, PID);
+        NtResumeProcess pfnNtResumeProcess =
+            (NtResumeProcess)GetProcAddress(GetModuleHandle(L"ntdll"), "NtResumeProcess");
+        if (!pfnNtResumeProcess)
+        {
+            return 1;
+        }
+        pfnNtResumeProcess(processHandle);
+        CloseHandle(processHandle);
+        return 0;
+    }
+    inline void procKill(DWORD PID)
+    {
+        cmd("taskkill /f /pid " + to_string((int)PID));
+    }
+    inline void procKillTree(DWORD PID)
+    {
+        cmd("taskkill /t /f /pid" + to_string((int)PID));
+    }
+    inline void procKillName(string name)
+    {
+        cmd("taskkill /f /im " + name);
+    }
+    inline void procKillTreeName(string name)
+    {
+        cmd("taskkill /t /f /im" + name);
     }
 }
