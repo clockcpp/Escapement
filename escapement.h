@@ -54,6 +54,25 @@ using namespace std;
 #define ESC_COLOR_CYAN					6
 #define ESC_COLOR_RANDOM                7
 
+// chcp
+#define ESC_CHCP_US                     "437"
+#define ESC_CHCP_MULT                   "850"
+#define ESC_CHCP_SLAVIC                 "852"
+#define ESC_CHCP_CYRILLIC               "855"
+#define ESC_CHCP_TURKISH                "857"
+#define ESC_CHCP_Portuguese             "860"
+#define ESC_CHCP_Icelandic              "861"
+#define ESC_CHCP_CANADIAN               "863"
+#define ESC_CHCP_NORDIC                 "865"
+#define ESC_CHCP_RUSSIAN                "866"
+#define ESC_CHCP_MGREEK                 "869"
+#define ESC_CHCP_CHINESE                "936"
+#define ESC_CHCP_ANSI                   "65000"
+#define ESC_CHCP_UNICODE                "65001"
+#define ___EscDef___ true
+#endif
+
+#ifndef KEYs
 // keys
 #define KEY_BACKSPACE                   8
 #define KEY_TAB                         9
@@ -170,23 +189,7 @@ using namespace std;
 #define KEY_7                           55
 #define KEY_8                           56
 #define KEY_9                           57
-
-#define ESC_CHCP_US                     "437"
-#define ESC_CHCP_MULT                   "850"
-#define ESC_CHCP_SLAVIC                 "852"
-#define ESC_CHCP_CYRILLIC               "855"
-#define ESC_CHCP_TURKISH                "857"
-#define ESC_CHCP_Portuguese             "860"
-#define ESC_CHCP_Icelandic              "861"
-#define ESC_CHCP_CANADIAN               "863"
-#define ESC_CHCP_NORDIC                 "865"
-#define ESC_CHCP_RUSSIAN                "866"
-#define ESC_CHCP_MGREEK                 "869"
-#define ESC_CHCP_CHINESE                "936"
-#define ESC_CHCP_ANSI                   "65000"
-#define ESC_CHCP_UNICODE                "65001"
-
-#define ___EscDef___ true
+#define KEYs true
 #endif
 
 /// <summary>
@@ -373,7 +376,7 @@ namespace _Escapement
         temp = "";
 
         // separate path
-        i = ans.fullPath.length();
+        i = (int)ans.fullPath.length();
         while (fullPath[i] != '\\' && fullPath[i] != '/')
         {
             --i;
@@ -404,7 +407,7 @@ namespace _Escapement
 
         // separate file name
         bool noSuffix = false;
-        i = ans.fileNameWithSuffix.length();
+        i = (int)ans.fileNameWithSuffix.length();
         while (ans.fileNameWithSuffix[i] != '.')
         {
             --i;
@@ -444,6 +447,7 @@ namespace _Escapement
                     return this->colorMap[i].data;
                 }
             }
+            return 0;
         }
     private:
         struct cmap
@@ -1034,6 +1038,10 @@ namespace esc
     {
         typedef LONG(NTAPI* NtSuspendProcess)(IN HANDLE ProcessHandle);
         HANDLE processHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, PID);
+        if (!processHandle)
+        {
+            return 1;
+        }
         NtSuspendProcess pfnNtSuspendProcess =
             (NtSuspendProcess)GetProcAddress(GetModuleHandle(L"ntdll"), "NtSuspendProcess");
         if (!pfnNtSuspendProcess)
@@ -1049,6 +1057,10 @@ namespace esc
     {
         typedef LONG(NTAPI* NtResumeProcess)(IN HANDLE ProcessHandle);
         HANDLE processHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, PID);
+        if (!processHandle)
+        {
+            return 1;
+        }
         NtResumeProcess pfnNtResumeProcess =
             (NtResumeProcess)GetProcAddress(GetModuleHandle(L"ntdll"), "NtResumeProcess");
         if (!pfnNtResumeProcess)
