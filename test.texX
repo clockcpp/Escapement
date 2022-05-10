@@ -1,0 +1,24 @@
+Backslash tests:
+Endline: abc\ndef
+Tab:abc\tdef
+Make a Sound:\a
+Type a backslash:\\
+
+Color tests:
+white	:	\cwhiTEXT\cwhi
+red	:	\credTEXT\cwhi
+green	:	\cgreTEXT\cwhi
+blue	:	\cbluTEXT\cwhi
+yellow	:	\cyelTEXT\cwhi
+purple	:	\cpurTEXT\cwhi
+cyan	:	\ccyaTEXT\cwhi
+
+debug1	:	\crnd\crnd\crnd\crnd\crnd\crndtextabcdefg\cwhi
+debug2	:	textabcdefg\crnd\crnd\crnd\crnd\crnd\crnd\cwhi
+
+Here comes random color!
+random	:	\crndTEXT\cwhi
+random2	:	\crndTEXT\cwhi
+random3	:	\crndTEXT\cwhi
+random4	:	\crndTEXT\cwhi
+random5	:	\crndTEXT\cwhi
