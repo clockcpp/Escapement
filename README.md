@@ -455,7 +455,7 @@ duration: 声音的持续时间(ms)
 ```
 
 
-## Macro defitions:
+## Macro definitions:
 ```
 __VERSION_OF_ESCAPEMENT__ : string, version of Escapement
 __RELEASE_VERSION_OF_ESCAPEMENT__ : int or short, first version number
