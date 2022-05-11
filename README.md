@@ -422,6 +422,35 @@ public:
     string driver;						// C(if is relativePath is false)
 };
 ```
+### sounds
+播放声音, 与MessageBeep()和Beep()功能相同
+```cpp
+(esc::) void playBeepMsg(int type)
+(esc::) void playBeepFreq(int freq, int duration)
+```
+```
+type: 种类，使用类似MSG_OK的定义传参，见下定义
+freq: 声音的频率(Hz)
+duration: 声音的持续时间(ms)
+```
+定义:
+```cpp
+#ifndef MSGBeeps
+#define MSG_BEEP                0xFFFFFFFF
+#define MSG_OK                  0x00000000L
+#define MSG_ICONERROR           0x00000010L
+#define MSG_ICONSTOP            0x00000010L
+#define MSG_ICONHAND            0x00000010L
+#define MSG_ICONQUESTION        0x00000020L
+#define MSG_ICONEXCLAMATION     0x00000030L
+#define MSG_ICONWARNING         0x00000030L
+#define MSG_ICONASTERISK        0x00000040L
+#define MSG_ICONINFORMATION     0x00000040L
+
+#define MSGBeeps true
+#endif
+```
+
 
 ## Marco defitions:
 ```
