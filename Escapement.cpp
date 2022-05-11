@@ -7,8 +7,21 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
+    /*
+    while(1)
+    {
+        Beep(261, 200);
+        Beep(293, 200);
+        Beep(329, 200);
+        Beep(349, 200);
+        Beep(391, 200);
+        Beep(440, 200);
+        Beep(493, 200);
+        Beep(523, 200);
+    }
+    */
     esc::chcp(ESC_CHCP_UNICODE);
     puts("This is LIPSUM!");
     esc::outputWF(".\\Lipsum.texX",0,-1);
