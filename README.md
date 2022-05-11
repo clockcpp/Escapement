@@ -11,7 +11,7 @@ like this:
 
 And don't forget there's a namespace, you need use this
 ```cpp
-esc::writeFileWF(xxx);
+esc::playBeepFreq(xxx);
 ```
 or this
 ```cpp
@@ -470,6 +470,7 @@ _Esc_maxn : a int that defines the maxium subscript
 - ESC_COLOR_XXX : colors for further texts
 - ESC_CHCP_XXX : chcp locations(encodings)
 - KEY_XXX : key codes
+- MSG_XXX : message beep codes
 
 ```
 
