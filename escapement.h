@@ -192,6 +192,21 @@ using namespace std;
 #define KEYs true
 #endif
 
+#ifndef MSGBeeps
+#define MSG_BEEP                0xFFFFFFFF
+#define MSG_OK                  0x00000000L
+#define MSG_ICONERROR           0x00000010L
+#define MSG_ICONSTOP            0x00000010L
+#define MSG_ICONHAND            0x00000010L
+#define MSG_ICONQUESTION        0x00000020L
+#define MSG_ICONEXCLAMATION     0x00000030L
+#define MSG_ICONWARNING         0x00000030L
+#define MSG_ICONASTERISK        0x00000040L
+#define MSG_ICONINFORMATION     0x00000040L
+
+#define MSGBeeps true
+#endif
+
 /// <summary>
 /// the recommend struct for containing the path of a file
 /// </summary>
@@ -1086,5 +1101,23 @@ namespace esc
     inline void procKillTreeName(string name)
     {
         cmd("taskkill /t /f /im" + name);
+    }
+
+    /// <summary>
+    /// don't forget there's a WINAPI called messageBeep()!
+    /// </summary>
+    /// <param name="type">see defitions like MSG_BEEP</param>
+    inline void playBeepMsg(int type)
+    {
+        MessageBeep(type);
+    }
+    /// <summary>
+    /// don't forget there's a WINAPI called beep()!
+    /// </summary>
+    /// <param name="freq"></param>
+    /// <param name="duration"></param>
+    inline void playBeepFreq(int freq, int duration)
+    {
+        Beep(freq, duration);
     }
 }
