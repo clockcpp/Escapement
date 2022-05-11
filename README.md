@@ -170,8 +170,11 @@ valueTest="test"
 # 错误的语法[×]DONT WRITE LIKE THIS:
 # note1\
 note2
+# correct:
+# note1
+# note2
 
-# wrong tag(int, but simllar all)
+# wrong tag(int, but similar to all)
 name = 1
 # correct:
 name=1
