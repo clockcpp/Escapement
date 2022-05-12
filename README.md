@@ -23,6 +23,9 @@ writeFileWF(xxx);
 ```
 to use it.
 
+escapement.cpp: example  
+__WARNING: if you suffer from photosensitive epilepsy or other symptoms, NEVER compile and run Escapement.cpp!__
+
 # Technical documentation
 ## function list:
   
