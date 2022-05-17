@@ -1120,4 +1120,35 @@ namespace esc
     {
         Beep(freq, duration);
     }
+
+    void Q_sort(int* targ, int L, int R)
+    {
+        if (L > R)
+        {
+            return;
+        }
+
+        int pL = L, pR = R;
+        const int card = targ[L];
+
+        while (pL != pR)
+        {
+            while (targ[pR] >= card && pL < pR)
+            {
+                pR--;
+            }
+            while (targ[pL] <= card && pL < pR)
+            {
+                pL++;
+            }
+            if (pL < pR)
+            {
+                swap(targ[pL], targ[pR]);
+            }
+        }
+        targ[L] = targ[pL];
+        targ[pR] = card;
+        Q_sort(targ, pL + 1, R);
+        Q_sort(targ, L, pL - 1);
+    }
 }
